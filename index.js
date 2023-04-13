@@ -1,97 +1,86 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateReadMe = require('./utils/generateMarkdown')
-
-const generateReadMe =({Title, Description, TableofContents, Installation, Usage, License, Contributing, Test, Questions}) =>
-` # ${Title}
-
-# ${Description}
-
-# ${TableofContents}
-
-# ${Installation}
-
-# ${Usage}
-
-# ${License}
-
-# ${Contributing}
-
-# ${Test}
-
-# ${Questions}
-
-
-`
+const generateMarkdown = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
 const questions = [
-{
-    name: 'projectTitle',
-    message: 'Project Title',
-    type: 'input'
-},
+    {
+        name: 'title',
+        message: 'Project Title',
+        type: 'input'
+    },
 
-{
-    name: 'description',
-    message: 'Project Description',
-    type: 'input'
-},
+    {
+        name: 'description',
+        message: 'Project Description',
+        type: 'input'
+    },
 
-{
-    name: 'installation',
-    message: 'Installation',
-    type: 'input'
-},
+    {
+        name: 'installation',
+        message: 'Installation Instructions',
+        type: 'input'
+    },
 
-{
-    name: 'usage',
-    message: 'Usage',
-    type: 'input'
-},
+    {
+        name: 'usage',
+        message: 'Usage Information',
+        type: 'input'
+    },
 
-{
-    name: 'contributing',
-    message: 'Contributing',
-    type: 'input'
-},
+    {
+        name: 'license',
+        message: 'License',
+        type: 'list',
+        choices: ['Apache','MIT','Boost','Mozilla','N/A']
+    },
 
-{
-    name: 'tests',
-    message: 'tests',
-    type: 'input'
-},
+    {
+        name: 'contributing',
+        message: 'Contribution Guidelines',
+        type: 'input'
+    },
 
-{
-    name: 'questionsSection',
-    message: 'Questions',
-    type: 'input'
-},
+    {
+        name: 'test',
+        message: 'Test Instructions',
+        type: 'input'
+    },
 
+    {
+        name: 'questions',
+        message: 'Questions',
+        type: 'input'
+    },
 
+    {
+        name: 'github',
+        message: 'GitHub Username',
+        type: 'input'
+    },
+
+    {
+        name: 'email',
+        message: 'Email',
+        type: 'input'
+    }
 ];
 
-console.log(questions)
-
-inquirer.prompt(questions).then((answers) => {
-  generateReadMe(answers);
-});
-
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-fs.writeFile('README.md', md, (err) => {
-    if (err) throw err;
-    console.log('README.md file generated!');
-  });
-
-
-
 // TODO: Create a function to initialize app
-// function init() {
+function init() {
+    inquirer
+        .prompt(questions)
+        .then((answers) => {
+            const md = generateMarkdown(answers);
+            fs.writeFile('./README-outputs/README.md', md, (err) => {
+                if (err) throw err;
+                console.log('README.md file generated!');
+            });
+        })
 
-// }
+};
+
 
 // Function call to initialize app
-// init();
+init();

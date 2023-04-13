@@ -1,20 +1,74 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(license) {
+  if (license === "N/A") {
+    return ``
+  }
+  else if (license === 'Apache') {
+    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+  }
+  else if (license === 'Boost') {
+    return `[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`
+  }
+  else if (license === 'Mozilla') {
+    return `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+  }
+  else if (license === 'MIT') {
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+  }
+}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function generateMarkdown(data) {
+  return `
+   
+  # ${data.title}
+  
+  ## Description
+  
+  ${data.description}
+  
+  ## Table of Contents
+  1. [Description](#description)
+  2. [Installation](#installation)
+  3. [Usage](#usage)
+  4. [License](#license)
+  5. [Contributing](#contributing)
+  6. [Tests](#tests)
+  7. [Questions](#questions)
+  
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+  ${data.tableOfContents}
+  
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(questions) {
-  return `# ${answer.title}
+  ## Installation Instructions
+  
+  ${data.installation}
+  
+  ## Usage Information
+  
+  ${data.usage}
+  
+  ## License
+  ${data.license}
+    
+  ${renderLicenseBadge(data.license)}
 
-`;
+  ## Contribution Guidelines
+  
+  ${data.contributing}
+  
+  ## Test Instructions
+  
+  ${data.test}
+  
+  ## Questions
+  
+  ${data.questions}
+
+  GitHub Link: https://www.github.com/${data.github}.
+
+  For additional questions, you may contact me at ${data.email}!
+  `;
 }
 
 module.exports = generateMarkdown;

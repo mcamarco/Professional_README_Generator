@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mcamarco/Professional_README_Generator/issues"
   },
-  "homepage": "https://github.com/mcamarco/Professional_README_Generator#readme"
+  "homepage": "https://github.com/mcamarco/Professional_README_Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }

@@ -37,9 +37,6 @@ function generateMarkdown(data) {
   7. [Questions](#questions)
   
 
-  ${data.tableOfContents}
-  
-
   ## Installation Instructions
   
   ${data.installation}
